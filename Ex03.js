@@ -41,13 +41,11 @@ app.get("/query/:id", (req, res) => {
     res.send(JSON.stringify(foundRec))
 })
 
-app.get("/searchByQueryName", function(req, res){
+app.get("/searchByQueryName", function (req, res) {
     keyword = req.query.queryName;
     searchQuery = [];
-    qat.forEach(element =>
-    {
-        if(keyword == element.queryName)
-        {
+    qat.forEach(element => {
+        if (keyword == element.queryName) {
             searchQuery.push(element); // this will only send name of the hotel, for full detail use push(element)
         }
     });
@@ -98,26 +96,26 @@ app.post('/query', (req, res) => {
     }
 
 })
-app.delete("/querys/:id", (req, res) => {
+app.delete("/query/:id", (req, res) => {
     if (query.length == 0)
-        readData(); 
+        readData();
     //let body = req.body; 
-    var flag=1;
+    var flag = 1;
     const queryid = req.params.id;
     for (let index = 0; index < query.length; index++) {
         let element = query[index];
-        if (element.queryId == queryid) { 
-            query.splice(index,1);
+        if (element.queryId == queryid) {
+            query.splice(index, 1);
             res.send("queryDeleted Successfully");
             saveData();
             readData();
             flag = 0;
         }
-     }
-     if (flag >= 1) {
+    }
+    if (flag >= 1) {
         res.send("Error in Deleting");
     }
- 
+
 })
 
 

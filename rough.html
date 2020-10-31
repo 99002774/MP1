@@ -105,10 +105,10 @@
 
         function init() {
             $("div").hide(2000);
-            $("a:eq(1)").click(populateData);
-           // $("a:eq(1)").click(showAddDiv);
-          //  $("button:eq(0)").click(saveChanges);
-          //  $("button:eq(1)").click(addChanges);
+            $("a:first").click(populateData);
+            $("a:eq(1)").click(showAddDiv);
+            $("button:eq(0)").click(saveChanges);
+            $("button:eq(1)").click(addChanges);
         }
         $(document).ready(init);
     </script>
@@ -130,7 +130,6 @@
                 <th>Query Id</th>
                 <th>Query Name</th>
                 <th>Project Name</th>
-                <th>Business Unit</th>
                 <th>Created By</th>
             </tr>
         </table>

@@ -32,10 +32,10 @@
                 let obj ={};
              //take the values from the inputs..
              obj.queryId = $("#qId").val();
-             obj.queryName = $("#qName").val();
-             obj.projectName = $("#pName").val();
-             obj.businessUnit = $("#busUnit").val();
-             obj.createdBy = $("#cName").val();
+             obj.queryName = $("#queryName").val();
+             obj.projectName = $("#projectName").val();
+             obj.businessUnit = $("#businessUnit").val();
+             obj.createdBy = $("#createdBy").val();
                 //Use this function for Put and post operation
                 $.ajax({
                     method : 'PUT',
@@ -92,10 +92,12 @@
                 $.get(url, (data)=>{
                     let array = JSON.parse(data);
                     for (const query of array) {
-                        const row = `<tr><td>${query.queryId}</td><td>${query.queryName}</td><td>${query.projectName}</td><td>${query.businessUnit}</td><td>${query.createdBy}</td><td><a href="#" class="edit" queryId = ${query.queryId}>Edit</a></tr>`
+                        const row = `<tr><td>${query.queryId}</td><td>${query.queryName}</td><td>${query.projectName}</td><td>${query.businessUnit}</td><td>${query.createdBy}</td><td><a href="#" class="edit" queryId = ${query.queryId}>Edit</a><td><a href="#" class="delete" dId = ${query.queryId}>Delete</a></tr>`
                         $("table").append(row);
                     }
-                    $(".edit").click(findRecord);               
+                    $(".edit").click(findRecord); 
+                    $(".delete").click(deleteRecord); 
+
                 })
                 //Populate the data into the table
                 
@@ -117,7 +119,7 @@
                 $("a:first").click(populateData);
                 $("a:eq(1)").click(showAddDiv);
                 $("button:eq(0)").click(saveChanges);
-                $("button:eq(1)").click(addChanges);
+                
             }
             $(document).ready(init);
             
@@ -127,11 +129,12 @@
     <body>
         <h1>Query Assignment Tracker</h1>
         <nav>
-            <a href="http://localhost:3333/">Home</a>
-            <a href="http://localhost:3336/">Existing Query</a>
-            <a href="http://localhost:3334/">Create Query</a>
-            <a href="http://localhost:3335/">Edit Query</a>
-            <a href="http://localhost:3337/">Search Query</a>
+            <a href="http://localhost:3333" target="_blank">Home</a>
+            <a href="http://localhost:3336" target="_blank">Existing Query</a>
+            <a href="http://localhost:3334" target="_blank">Create Query</a>
+            <a href="http://localhost:3335" target="_blank">Edit Query</a>
+            <a href="http://localhost:3337" target="_blank">Search Query</a>
+            
         </nav>
         <div class="section">
             <table border="1">
@@ -149,10 +152,10 @@
         <div class="section">
             <h2>Details of the query</h2>
             <p>Query Id: <input id="qId" /></p>
-            <p>Query Name : <input id="qName" /></p>
-            <p>Project Name : <input id="pName" /></p>
-            <p>Business Unit : <input id="busUnit" /></p>
-            <p>Created By : <input id="cName" /></p>
+            <p>Query Name : <input id="queryName" /></p>
+            <p>Project Name : <input id="projecttName" /></p>
+            <p>Business Unit : <input id="businessUnit" /></p>
+            <p>Created By : <input id="createdBy" /></p>
             <p><button>Save Changes</button></p>
         </div>
     </body>
