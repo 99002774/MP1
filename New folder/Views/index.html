@@ -1,0 +1,159 @@
+<html>
+
+<head>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 75%;
+        }
+        
+        th,
+        td {
+            text-align: left;
+            padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2
+        }
+        
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        a:link,
+        a:visited {
+            background-color: #f44336;
+            color: white;
+            padding: 14px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        a:hover,
+        a:active {
+            background-color: red;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script>
+        const url = "http://localhost:1234/Querys";
+
+        function saveChanges() {
+            let obj = {};
+
+            obj.queryId = $("#sId").text();
+            obj.queryName = $("#queryName").val();
+            obj.projectName = $("#projectName").val();
+            obj.businessUnit = $("#businessUnit").val();
+            obj.status = $("#status").val();
+            obj.assignedTo = $("#assignedTo").val();
+            obj.suggestion = $("#suggestion").val();
+            obj.createdBy = $("#createdBy").val();
+
+            $.ajax({
+                method: 'PUT',
+                url: url,
+                data: obj,
+                success: (data) => {
+                    alert(data);
+                }
+            })
+
+        }
+
+        function findRecord() {
+            $("div").hide(2000);
+            $("div:eq(1)").show(2000);
+            const id = $(this).attr("eId");
+            let tquery = url + "/" + id;
+            $.get(tquery, (data) => {
+                let query = JSON.parse(data);
+                $("#sId").text(query.queryId);
+                $("#queryName").val(query.queryName);
+                $("#projectName").val(query.projectName);
+                $("#businessUnit").val(query.businessUnit);
+                $("#status").val(query.status);
+                $("#assignedTo").val(query.assignedTo);
+                $("#suggestion").val(query.suggestion);
+                $("#createdBy").val(query.createdBy);
+            })
+        }
+
+        function showAddDiv() {
+            $("div").hide(2000);
+            $("div:last").show(2000);
+        }
+
+        function addChanges() {
+            let obj = {};
+            debugger;
+            obj.queryId = $("#newId").val();
+            obj.queryName = $("#newName").val();
+            obj.projectName = $("#newProjectname").val();            
+            obj.businessUnit = $("#newBusinessUnit").val();
+            obj.status = $("#newStatus").val();
+            obj.assignedTo = $("#newAssignedTo").val();
+            obj.sugesstion = $("#newSuggestion").val();
+            obj.createdBy = $("#newCreatedby").val();
+            $.post(url, obj, (data) => {
+                alert(data);
+                $("input").val("");
+                $("div").hide(2000);
+            })
+
+        }
+
+        function populateData() {
+
+            $("div:first").show(2000);
+            $("table").find("tr:gt(0)").remove();
+
+            $.get(url, (data) => {
+                let array = JSON.parse(data);
+                for (const query of array) {
+                    const row = `<tr><td>${query.queryId}</td><td>${query.queryName}</td><td>${query.projectName}</td><td>${query.businessUnit}</td><td>${query.status}</td><td>${query.assignedTo}</td><td>${query.suggestion}</td><td>${query.createdBy}</td></tr>`
+                    $("table").append(row);
+                }
+            })
+
+
+        }
+
+        function init() {
+           // $("div").hide(2000);
+            $("div").show(populateData);
+            $("a:eq(1)").click(showAddDiv);
+            $("button:eq(0)").click(saveChanges);
+            $("button:eq(1)").click(addChanges);
+        }
+        $(document).ready(init);
+    </script>
+</head>
+
+<body>
+    <h1>Query Management System Using RestAPI and NodeJs</h1>
+    
+    <div class="section">
+        <table border="2">
+            <tr>
+                <th>Query ID</th>
+                <th>Query Name</th>
+                <th>Project Name</th>
+                <th>Business Unit</th>
+                <th>Status</th>
+                <th>Assigned to</th>
+                <th>Suggestions</th>
+                <th>Created by</th>
+            
+            </tr>
+        </table>
+    </div>
+   
+</body>
+
+</html>
