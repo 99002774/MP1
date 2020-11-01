@@ -67,6 +67,10 @@ app.put("/Querys", (req, res) => {
         if (element.queryId == body.queryId) {
             element.queryName = body.queryName;
             element.projectName = body.projectName;
+            element.businessUnit = body.businessUnit;
+            element.status = body.status;
+            element.assignedTo = body.assignedTo;
+            element.suggestion = body.suggestion;
             element.createdBy = body.createdBy;
             saveData();
             res.send("Query updated successfully");

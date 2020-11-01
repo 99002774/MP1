@@ -5,7 +5,7 @@
     <style>
         table {
             border-collapse: collapse;
-            width: 65%;
+            width: 75%;
         }
         
         th,
@@ -49,6 +49,10 @@
             obj.queryId = $("#sId").text();
             obj.queryName = $("#queryName").val();
             obj.projectName = $("#projectName").val();
+            obj.businessUnit = $("#businessUnit").val();
+            obj.status = $("#status").val();
+            obj.assignedTo = $("#assignedTo").val();
+            obj.suggestion = $("#suggestion").val();
             obj.createdBy = $("#createdBy").val();
 
             $.ajax({
@@ -72,6 +76,10 @@
                 $("#sId").text(query.queryId);
                 $("#queryName").val(query.queryName);
                 $("#projectName").val(query.projectName);
+                $("#businessUnit").val(query.businessUnit);
+                $("#status").val(query.status);
+                $("#assignedTo").val(query.assignedTo);
+                $("#suggestion").val(query.suggestion);
                 $("#createdBy").val(query.createdBy);
             })
         }
@@ -86,7 +94,11 @@
             debugger;
             obj.queryId = $("#newId").val();
             obj.queryName = $("#newName").val();
-            obj.projectName = $("#newProjectname").val();
+            obj.projectName = $("#newProjectname").val();            
+            obj.businessUnit = $("#newBusinessUnit").val();
+            obj.status = $("#newStatus").val();
+            obj.assignedTo = $("#newAssignedTo").val();
+            obj.sugesstion = $("#newSuggestion").val();
             obj.createdBy = $("#newCreatedby").val();
             $.post(url, obj, (data) => {
                 alert(data);
@@ -104,7 +116,7 @@
             $.get(url, (data) => {
                 let array = JSON.parse(data);
                 for (const query of array) {
-                    const row = `<tr><td>${query.queryId}</td><td>${query.queryName}</td><td>${query.projectName}</td><td>${query.createdBy}</td></tr>`
+                    const row = `<tr><td>${query.queryId}</td><td>${query.queryName}</td><td>${query.projectName}</td><td>${query.businessUnit}</td><td>${query.status}</td><td>${query.assignedTo}</td><td>${query.suggestion}</td><td>${query.createdBy}</td></tr>`
                     $("table").append(row);
                 }
             })
@@ -127,11 +139,15 @@
     <h1>Query Management System Using RestAPI and NodeJs</h1>
     
     <div class="section">
-        <table border="1">
+        <table border="2">
             <tr>
                 <th>Query ID</th>
                 <th>Query Name</th>
                 <th>Project Name</th>
+                <th>Business Unit</th>
+                <th>Status</th>
+                <th>Assigned to</th>
+                <th>Suggestions</th>
                 <th>Created by</th>
             
             </tr>
