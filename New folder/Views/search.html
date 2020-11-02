@@ -7,22 +7,22 @@
             border-collapse: collapse;
             width: 65%;
         }
-        
+
         th,
         td {
             text-align: left;
             padding: 8px;
         }
-        
+
         tr:nth-child(even) {
             background-color: #f2f2f2
         }
-        
+
         th {
             background-color: #4CAF50;
             color: white;
         }
-        
+
         a:link,
         a:visited {
             background-color: #f44336;
@@ -32,18 +32,19 @@
             text-decoration: none;
             display: inline-block;
         }
-        
+
         a:hover,
         a:active {
             background-color: red;
         }
     </style>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-   <script>
-       const url="http://localhost:1234/Querys";
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script>
+        const url = "http://localhost:1234/Querys";
 
-       function saveChanges() {
+        function saveChanges() {
             let obj = {};
 
             obj.queryId = $("#sId").text();
@@ -66,12 +67,12 @@
         }
 
         function findRecord() {
-           // $("div:eq(0)").hide();
-           // $("div").show(2000);
+            // $("div:eq(0)").hide();
+            // $("div").show(2000);
 
             $("div").hide();
             $("#d2").show(2000);
-            
+
             const id = $(this).attr("eId");
             let tquery = url + "/" + id;
             $.get(tquery, (data) => {
@@ -86,59 +87,67 @@
             })
         }
 
-        function deleteRecord(){
-                const id = $(this).attr("qId");
-                let temp = url + "/" + id;
-                $.ajax({
-                    method : 'DELETE',
-                    url : temp,
-                    success : (data)=>{
-                        alert(data);
-                    }
-                })
-            
-            }
+        function deleteRecord() {
+            const id = $(this).attr("qId");
+            let temp = url + "/" + id;
+            $.ajax({
+                method: 'DELETE',
+                url: temp,
+                success: (data) => {
+                    alert(data);
+                }
+            })
 
-       function populateData() {
+        }
 
-        // $("div:first").show(2000);
-        // $("table").find("tr:gt(0)").remove();
-        $("div").hide();
+        function populateData() {
+            // $("div:first").show(2000);
+            // $("table").find("tr:gt(0)").remove();
+            $("div").hide();
             $("div:first").show(2000);
             $("table").find("tr:gt(0)").remove();
-     let qname=document.getElementById("queryName").value;
-        $.get(url, (data) => {
-        let array = JSON.parse(data);
-        
-        for (const query of array){
-                    const row = `<tr><td>${query.queryId}</td><td>${query.queryName}</td><td>${query.projectName}</td><td>${query.businessUnit}</td><td>${query.status}</td><td>${query.assignedTo}</td><td>
-                    ${query.createdBy}</td><td><a href="#" class="edit" eId = ${query.queryId}>Edit</a>
-                        <a href="#" class="delete" qId = ${query.queryId}>Delete</a></tr>`
-                    $("table").append(row);
+            let qname = document.getElementById("queryName").value;
+            $.get(url, (data) => {
+                let array = JSON.parse(data);
+                let count = 0;
+
+                for (const query of array) {
+                    if (qname == query.queryName) {
+                        count = 1;
+                        const row = `<tr><td>${query.queryId}</td><td>${query.queryName}</td><td>${query.projectName}</td><td>${query.businessUnit}</td><td>${query.status}</td><td>${query.assignedTo}</td><td>
+${query.createdBy}</td><td><a href="#" class="edit" eId = ${query.queryId}>Edit</a>
+ <a href="#" class="delete" qId = ${query.queryId}>Delete</a></tr>`
+                        $("table").append(row);
+                    }
                 }
+                $("#d1").show();
                 $(".edit").click(findRecord);
                 $(".delete").click(deleteRecord);
-})
-$("#d1").show();
+                if (count == 0) {
+                    alert("Query Name not found, Enter the valid query name!");
+                    $("#d1").hide();
+                }
 
-}
-function init(){
-    $("#d1").hide();
-    $("#d2").hide();
-    $("button:eq(0)").click(populateData);
-    $("button:eq(1)").click(saveChanges);
-}
-$(document).ready(init);
-   </script>
+            })
+
+        }
+        function init() {
+            $("#d1").hide();
+            $("#d2").hide();
+            $("button:eq(0)").click(populateData);
+            $("button:eq(1)").click(saveChanges);
+        }
+        $(document).ready(init);
+    </script>
 </head>
 
 <body>
     <h1>Query Management System Using RestAPI and NodeJs</h1>
 
-    <div>
+    <div id="d3">
         <!-- <form action="http://localhost:1234/searchByQueryName"></form> -->
-           <p> Search Query by Name <input type="text" id="queryName"></p>
-           <p> <button>submit</button></p>
+        <p> Search Query by Name <input type="text" id="queryName"></p>
+        <p> <button>submit</button></p>
     </div>
 
     <div class="section" id="d1">
@@ -152,7 +161,7 @@ $(document).ready(init);
                 <th>Assigned to</th>
                 <th>Created by</th>
                 <th>Options</th>
-            
+
             </tr>
         </table>
     </div>
@@ -162,19 +171,19 @@ $(document).ready(init);
         <p>Query Name : <input id="queryName" /></p>
         <p>Project Name <input id="projectName" /></p>
         <p>Business Unit : <input id="businessUnit" /></p>
-        <p>Status : 
+        <p>Status :
             <select id="status">
                 <option value="Completed">Completed</option>
                 <option value="Not Completed">Not Completed</option>
             </select>
         </p>
         <p>Assigned to : <input id="assignedTo"></p>
-       
+
         <p>Created By <input id="createdBy" /></p>
         <p><button>Save Changes</button></p>
     </div>
-   
-   
+
+
 </body>
 
 </html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>Document</title>
+    <script>
+        function store() {
+            var fullname=document.getElementById("fullname").value;
+    var uname = document.getElementById("Uname").value;
+var pwd = document.getElementById("Pass").value;
+ 
+  var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if (fullname == "") {
+          alert("please enter full name.");
+        }
+        else if(uname == "") {
+          alert("please enter user name.");
+        } 
+        else if (pwd == "") {
+          alert("enter the password");
+        } else if (!filter.test(uname)) {
+          alert("Enter valid email id.");
+        } else if (pwd.length > 4 && pwd.length < 12) {
+            localStorage.setItem('fullname', fullname);
+            localStorage.setItem('username', uname);
+             localStorage.setItem('password', pwd);
+          alert(
+            "Thank You for Register & You are Redirecting to loginpage"
+          );
+          //Redirecting to other page or webste code or you can set your own html page.
+          window.location = "login.html";
+        } else {
+          alert("Password min 4 and max length is 8.");
+        }
+      }
+    </script>
+</head>
+<body>
+    <div id="main">
+      <div class="h-tag">
+        <h2>Welcome To My Account Login</h2>
+      </div>
+      <!-- SignUp box -->
+      <div class="signup">
+        <form id="signup" method="get" action="login.php">
+          <label><b>Full Name</b> </label>
+          <input type="text" name="fullname" id="fullname" placeholder="full name"/>
+          </br></br>
+          <label><b>User Name </b> </label>
+          <input type="text" name="Uname" id="Uname" placeholder="Username" />
+          <br /><br />
+          <label><b>Password </b> </label>
+          <input type="Password" name="Pass" id="Pass" placeholder="Password" />
+          <br /><br />
+          <input
+            type="button"
+            name="log"
+            id="reg"
+            value="Register Here"
+            onclick="store()"
+          />
+    
+    
+        </form>
+      </div>
+      <!-- login box div ending here.. -->
+    </div>
+    <!-- Main div ending here... -->
+  
+</body>
+</html>

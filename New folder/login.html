@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome To Login Form</title>
+    <script src="./Jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="./login.css" />
+    <script>
+      function login() {
+        var uname = document.getElementById("Uname").value;
+        var pwd = document.getElementById("Pass").value;
+ 
+        // stored data from the register-form
+        var storedName = localStorage.getItem("username");
+        var storedPw = localStorage.getItem("password");
+ 
+        // entered data from the login-form
+        var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if (uname == "") {
+          alert("please enter user name.");
+        } else if (pwd == "") {
+          alert("enter the password");
+        } else if (!filter.test(uname)) {
+          alert("Enter valid email id.");
+        } 
+        else if (pwd.length > 4 && pwd.length < 12) {
+          if (uname!== storedName || pwd!== storedPw) {
+            alert("Please Register");
+          } else {
+            alert("Thank You for Login & You are Redirecting to Query System.");
+            //Redirecting to other page or webste code or you can set your own html page.
+            window.location = "Views/menu.html";
+          }
+        } else {
+          alert("Password min 4 and max length is 8.");
+        }
+        // check if stored data from register-form is equal to data from login form
+ 
+        // var name1 = document.getElementById('name1');
+        // var pw = document.getElementById('pdw1');
+ 
+        // stored data from the register-form
+        // entered data from the login-form
+ 
+        // check if stored data from register-form is equal to data from login form
+ 
+        // function store() {
+        //     var uname = document.getElementById("Uname").value;
+        // var pwd = document.getElementById("Pass").value;
+        //   localStorage.setItem("name1", name1);
+        //   localStorage.setItem("pw", pw);
+ 
+        // var passw=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+      }
+    </script>
+  </head>
+ 
+  <body>
+    <!-- Main div code -->
+    <div id="main">
+      <div class="h-tag">
+        <h2>Welcome To My Account Login</h2>
+      </div>
+      <!-- Login box -->
+      <div class="login">
+        <form id="login" method="get" action="login.php">
+          <label><b>User Name </b> </label>
+          <input type="text" name="Uname" id="Uname" placeholder="Username" />
+          <br /><br />
+          <label><b>Password </b> </label>
+          <input type="Password" name="Pass" id="Pass" placeholder="Password" />
+          <br /><br />
+          <input
+            type="button"
+            name="log"
+            id="log"
+            value="LogIn Here"
+            onclick="login()"
+          />
+          <br /><br />
+          <input type="checkbox" id="check" />
+          <span><b>Remember me</b></span>
+          <br /><br />
+          <a href="signup.html" class="a1"> Sign Up</a>
+          <!--a href="#" class="a2"> Forgot Password</a-->
+        </form>
+      </div>
+      <!-- login box div ending here.. -->
+    </div>
+    <!-- Main div ending here... -->
+  </body>
+</html>
