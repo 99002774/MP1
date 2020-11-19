@@ -3,11 +3,24 @@
 <head>
 
     <style>
+        body{
+            background-image: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(255, 255, 255));
+            
+        }
+         h1{
+            text-align: center;
+            color: #f44336;
+        }
+        h2{
+            color: #4CAF50;
+        }
         table {
             border-collapse: collapse;
             width: 75%;
         }
-        
+        #d2{
+            color:rgb(255, 255, 255);
+        }
         th,
         td {
             text-align: left;
@@ -25,6 +38,14 @@
         
         a:link,
         a:visited {
+            background-color: #f44336;
+            color: white;
+            padding: 14px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+        button{
             background-color: #f44336;
             color: white;
             padding: 14px 25px;
@@ -149,9 +170,9 @@
         function init() {
             //$("div:eq(1)").hide(2000);
             $("div:eq(0)").show(populateData);
-           // $("a:eq(1)").click(showAddDiv);
+            $("a:eq(1)").click(showAddDiv);
             $("button:eq(0)").click(saveChanges);
-            $("button:eq(1)").click(addChanges);
+           // $("button:eq(1)").click(addChanges);
         }
         $(document).ready(init);
     </script>
@@ -160,6 +181,15 @@
 <body>
     <h1>Query Management System Using RestAPI and NodeJs</h1>
   
+    <br>
+    <br>
+    <a href="index.html" id="=fixedbutton">View Queries</a>
+    <a href="add.html" id="=fixedbutton">Add New Query</a>
+    <a href="edit.html" id="=fixedbutton">Edit Query</a>
+    <a href="search.html" id="=fixedbutton">Search Query</a>
+    <a href="/login.html" id="=fixedbutton" target="_blank">Logout</a>
+    <br>
+    <br>
     <div class="section">
         <table border="2">
             <tr>

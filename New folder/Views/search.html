@@ -3,11 +3,36 @@
 <head>
 
     <style>
+        body{
+            background-image: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(255, 255, 255));
+            
+        }
+         h1{
+            text-align: center;
+            color: #f44336;
+        }
+        h2{
+            color: #4CAF50;
+        }
+        #d2{
+            color:rgb(255, 255, 255);
+        }
+        #d3{
+            color:rgb(255, 255, 255);
+        }
         table {
             border-collapse: collapse;
             width: 65%;
         }
 
+        button{
+            background-color: #f44336;
+            color: white;
+            padding: 14px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
         th,
         td {
             text-align: left;
@@ -53,6 +78,7 @@
             obj.businessUnit = $("#businessUnit").val();
             obj.status = $("#status").val();
             obj.assignedTo = $("#assignedTo").val();
+            obj.suggestion = $("#suggestion").val();
             obj.createdBy = $("#createdBy").val();
 
             $.ajax({
@@ -83,6 +109,7 @@
                 $("#businessUnit").val(query.businessUnit);
                 $("#status").val(query.status);
                 $("#assignedTo").val(query.assignedTo);
+                $("#suggestion").val(query.suggestion);
                 $("#createdBy").val(query.createdBy);
             })
         }
@@ -114,9 +141,9 @@
                 for (const query of array) {
                     if (qname == query.queryName) {
                         count = 1;
-                        const row = `<tr><td>${query.queryId}</td><td>${query.queryName}</td><td>${query.projectName}</td><td>${query.businessUnit}</td><td>${query.status}</td><td>${query.assignedTo}</td><td>
-${query.createdBy}</td><td><a href="#" class="edit" eId = ${query.queryId}>Edit</a>
- <a href="#" class="delete" qId = ${query.queryId}>Delete</a></tr>`
+                        const row = `<tr><td>${query.queryId}</td><td>${query.queryName}</td><td>${query.projectName}</td><td>${query.businessUnit}</td><td>${query.status}</td><td>${query.assignedTo}</td><td>${query.suggestion}</td><td>
+                    ${query.createdBy}</td><td><a href="#" class="edit" eId = ${query.queryId}>Edit</a>
+                        <a href="#" class="delete" qId = ${query.queryId}>Delete</a></tr>`
                         $("table").append(row);
                     }
                 }
@@ -144,8 +171,18 @@ ${query.createdBy}</td><td><a href="#" class="edit" eId = ${query.queryId}>Edit<
 <body>
     <h1>Query Management System Using RestAPI and NodeJs</h1>
 
+    <br>
+    <br>
+    <a href="index.html" id="=fixedbutton">View Queries</a>
+    <a href="add.html" id="=fixedbutton">Add New Query</a>
+    <a href="edit.html" id="=fixedbutton">Edit Query</a>
+    <a href="search.html" id="=fixedbutton">Search Query</a>
+    <a href="/login.html" id="=fixedbutton" target="_blank">Logout</a>
+    <br>
+    <br>
     <div id="d3">
         <!-- <form action="http://localhost:1234/searchByQueryName"></form> -->
+        <h2>Search Query by Name</h2>
         <p> Search Query by Name <input type="text" id="queryName"></p>
         <p> <button>submit</button></p>
     </div>
@@ -159,6 +196,7 @@ ${query.createdBy}</td><td><a href="#" class="edit" eId = ${query.queryId}>Edit<
                 <th>Business Unit</th>
                 <th>Status</th>
                 <th>Assigned to</th>
+                <th>Suggestions</th>
                 <th>Created by</th>
                 <th>Options</th>
 
@@ -178,7 +216,7 @@ ${query.createdBy}</td><td><a href="#" class="edit" eId = ${query.queryId}>Edit<
             </select>
         </p>
         <p>Assigned to : <input id="assignedTo"></p>
-
+        <p>Suggestions : <input id="suggestion"></p>
         <p>Created By <input id="createdBy" /></p>
         <p><button>Save Changes</button></p>
     </div>

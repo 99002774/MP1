@@ -3,6 +3,17 @@
 <head>
 
     <style>
+        body{
+            background-image: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(255, 255, 255));
+            color:rgb(255, 255, 255);
+        }
+         h1{
+            text-align: center;
+            color: #f44336;
+        }
+        h2{
+            color: #4CAF50;
+        }
         table {
             border-collapse: collapse;
             width: 65%;
@@ -22,7 +33,14 @@
             background-color: #4CAF50;
             color: white;
         }
-        
+        button{
+            background-color: #f44336;
+            color: white;
+            padding: 14px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
         a:link,
         a:visited {
             background-color: #f44336;
@@ -140,6 +158,15 @@
 <body>
     <h1>Query Management System Using RestAPI and NodeJs</h1>
 
+    <br>
+    <br>
+    <a href="index.html" id="=fixedbutton">View Queries</a>
+    <a href="add.html" id="=fixedbutton">Add New Query</a>
+    <a href="edit.html" id="=fixedbutton">Edit Query</a>
+    <a href="search.html" id="=fixedbutton">Search Query</a>
+    <a href="/login.html" id="=fixedbutton" target="_blank">Logout</a>
+    <br>
+    <br>
     <div class="section">
         <h2>Register New Query</h2>
         <p>Query ID : <input id="newId" /></p>

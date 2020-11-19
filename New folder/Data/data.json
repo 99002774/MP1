@@ -1,22 +1,12 @@
 [
     {
-        "queryId": "123",
-        "queryName": "test2",
-        "projectName": "mp1",
+        "queryId": "202",
+        "queryName": "Vishnu K",
+        "projectName": "test",
         "businessUnit": "sps",
         "status": "Not Completed",
         "assignedTo": "test",
-        "suggestion": "",
+        "suggestion": "change ui",
         "createdBy": "dev"
-    },
-    {
-        "queryId": "12345",
-        "queryName": "test3",
-        "projectName": "mp",
-        "businessUnit": "sps",
-        "status": "Not Completed",
-        "assignedTo": "tester",
-        "suggestion": "",
-        "createdBy": "developer"
     }
 ]

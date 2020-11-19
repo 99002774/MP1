@@ -87,6 +87,24 @@
             background-color: palevioletred;
         }
 
+        nav a:nth-child(4):before {
+            background-color: green;
+        }
+
+        nav a:nth-child(4):after {
+            background-color: rgb(236, 240, 8);
+        }
+
+        
+        nav a:nth-child(5):before {
+            background-color: red;
+        }
+
+        nav a:nth-child(5):after {
+            background-color: blue;
+        }
+       
+
         #indicator {
             position: absolute;
             left: 5%;
@@ -117,9 +135,19 @@
         }
 
         nav a:nth-child(3):hover~#indicator {
-            left: 70%;
+            left: 55%;
             background: linear-gradient(130deg, purple, palevioletred);
         }
+
+        nav a:nth-child(4):hover~#indicator {
+            left: 80%;
+            background: linear-gradient(130deg, green, rgb(236, 240, 8));
+        }
+
+        nav a:nth-child(5):hover~#indicator {
+            background: linear-gradient(130deg, red, blue);
+        }
+
 
         #ytd-url {
             display: block;
@@ -137,6 +165,12 @@
             box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
             z-index: 125;
         }
+
+        nav a:nth-child(5) {
+            position: fixed;
+            bottom: -400px;
+            right: -500px;
+        }
     </style>
 
     <title>Document</title>
@@ -144,11 +178,13 @@
 
 <body>
     <nav>
-        <a href="index.html" target="_blank">View All</a>
-        <a href="add.html" target="_blank">Add new</a>
-        <a href="edit.html" target="_blank">Edit</a>
-        <a href="search.html" target="_blank">Search</a>
+        <a href="index.html">View Queries</a>
+        <a href="add.html">Add New Query</a>
+        <a href="edit.html">Edit Query</a>
+        <a href="search.html">Search Query</a>
+        <a href="/login.html" id="=fixedbutton" target="_blank">Logout</a>
         <div id="indicator"></div>
+        
     </nav>
 
 </body>

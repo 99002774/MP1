@@ -51,7 +51,7 @@ app.get("/searchByQueryName", function (req, res) {
     searchQuery = [];
     qat.forEach(element => {
         if (keyword == element.queryName) {
-            searchQuery.push(element); // this will only send name of the hotel, for full detail use push(element)
+            searchQuery.push(element); 
         }
     });
     res.send(searchQuery);
