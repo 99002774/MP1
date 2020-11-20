@@ -1,12 +1,1 @@
-[
-    {
-        "queryId": "202",
-        "queryName": "Vishnu K",
-        "projectName": "test",
-        "businessUnit": "sps",
-        "status": "Not Completed",
-        "assignedTo": "test",
-        "suggestion": "change ui",
-        "createdBy": "dev"
-    }
-]
+[{"queryId":"202","queryName":"Vishnu K","projectName":"test","businessUnit":"sps","status":"Not Completed","assignedTo":"test","suggestion":"","createdBy":"dev"},{"queryId":"111","queryName":"test2","projectName":"android","businessUnit":"sps","status":"Not Completed","assignedTo":"test","suggestion":"","createdBy":"dev"}]
